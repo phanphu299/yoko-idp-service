@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IdpServer.Domain\IdpServer.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IdentityServer4.EntityFramework.Storage" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="FluentValidation" Version="8.6.3" />
+    <PackageReference Include="MediatR" Version="8.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.32" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.0" />
+    <PackageReference Include="prometheus-net" Version="6.0.0" />
+    <PackageReference Include="AHI.Infrastructure.Bus.RabbitMQ" Version="3.0.0-beta16" />
+    <PackageReference Include="AHI.Infrastructure.Service" Version="2.1.5-rc54" />
+    <PackageReference Include="AHI.Infrastructure.Validation" Version="2.1.5-rc54" />
+    <PackageReference Include="AHI.Infrastructure.Audit" Version="2.1.5-rc54" />
+    <PackageReference Include="AHI.Infrastructure.Cache.Redis" Version="2.1.5-rc54" />
+    <PackageReference Include="AHI.Infrastructure.Service.Tag" Version="2.1.5-rc54" />
+  </ItemGroup>
+</Project>

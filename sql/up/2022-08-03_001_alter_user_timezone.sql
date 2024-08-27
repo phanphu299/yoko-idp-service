@@ -1,0 +1,1 @@
+alter table users alter column timezone_id int null

@@ -1,0 +1,1 @@
+alter table users add setup_mfa bit default 0;

@@ -1,0 +1,1 @@
+update clients set AuthorizationCodeLifetime = 86400 -- 1 day

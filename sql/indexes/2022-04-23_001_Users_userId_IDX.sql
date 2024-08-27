@@ -1,0 +1,1 @@
+create nonclustered index IDX_user_user_id on users(user_id);

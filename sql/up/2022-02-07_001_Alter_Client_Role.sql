@@ -1,0 +1,1 @@
+alter table client_roles alter column project_id uniqueidentifier null

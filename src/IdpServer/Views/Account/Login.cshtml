@@ -1,0 +1,98 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@inject IViewLocalizer Localizer
+@model IdentityServer4.Quickstart.Model.LoginViewModel
+
+@{
+    ViewBag.Title = Localizer["PAGE.LOGIN.TITLE"];
+    ViewBag.SubTitle = Localizer["PAGE.LOGIN.SUB_TITLE"];
+    var recaptchaKey = @Configuration.GetSection("ApplicationKeys")["reCaptchaV2:SiteKey"];
+}
+<div class="access-denied-login">
+    <div class="header-form">
+        <div class="tenant">
+            <span class="tenant-name">@Localizer["PAGE.VERIFICATION.FIELD.WELCOME_BACK"]</span>
+        </div>
+        <span class="sub-title">@ViewBag.SubTitle</span>
+    </div>
+    <form id='mainForm' class="page-login" asp-route="Login">
+        @if (!string.IsNullOrEmpty(recaptchaKey))
+            {
+                <div id='recaptcha' class="g-recaptcha" data-sitekey="@recaptchaKey" data-callback="onSubmit"
+                    data-expired-callback="expiredCallback" data-size="invisible">
+                </div>
+            }
+        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+        <div class="error-message-block">
+            <div>
+                <ul>
+                    @foreach (var error in ViewData.ModelState.SelectMany(x => x.Value.Errors))
+                    {
+                        <li class="error-message">@Html.Raw(@error.ErrorMessage)</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group first-child">
+                <label for="user_email" class="form-label">@Localizer["COMMON.FIELD.EMAIL"]</label>
+                <input type="text" class="form-control required" id="user_email"
+                       placeholder='@Localizer["COMMON.FIELD.EMAIL"]' asp-for="Username"
+                       disabled="@(Model.LockedOut)">
+                <span asp-validation-for="Username" class="val-error-message"></span>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group last-child">
+                <label for="password_input" class="form-label">@Localizer["COMMON.FIELD.PASSWORD"]</label>
+                <div class="input-password-group">
+                    <i class="bi bi-eye-slash password-reveal"></i>
+                    <input asp-for="Password" type="password" class="form-control required password padding-right-input"
+                           placeholder='@Localizer["COMMON.FIELD.PASSWORD"]' autocomplete="off"
+                           disabled="@(Model.LockedOut)" id="password_input">
+                </div>
+                <span asp-validation-for="Password" class="val-error-message"></span>
+            </div>
+        </div>
+        <div class="remember-password">
+            <div class="col-6"></div>
+            <div class="col-6 text-end">
+                <a href="/Account/ForgotPassword?ReturnUrl=@ViewBag.ReturnUrl" class="@if(Model.LockedOut){ <text>disabled</text> }">
+                    @Localizer["PAGE.LOGIN.TEXT.FORGOT_PASSWORD"]
+                </a>
+            </div>
+        </div>
+        <div class="footer-form">
+            <div class="col-12 text-center btn-bar">
+                <input type="submit" class="btn btn-primary text-uppercase acceptBtn" disabled="@(Model.LockedOut)"
+                       value='@Localizer["BUTTON.SIGNIN"]' />
+            </div>
+
+            @if (@Model.VisibleExternalProviders.Any())
+            {
+                <span class="page-break text-center">Or</span>
+                <div class="col-12 text-center">
+                    @foreach (var item in @Model.VisibleExternalProviders)
+                    {
+                        var authScheme = item.AuthenticationScheme.ToLower().Split('-').FirstOrDefault();
+                        var imgSrc = $"/img/logo-{authScheme}.svg";
+
+                        <a class="btn btn-primary text-uppercase acceptBtn @if(Model.LockedOut){<text>disabled</text>}" name="button"
+                           value="@item.AuthenticationScheme" asp-controller="External" asp-action="Challenge"
+                           asp-route-provider="@item.AuthenticationScheme" asp-route-returnUrl="@Model.ReturnUrl">
+                            <span>@item.DisplayName</span>
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script src="~/js/page.login.js" asp-append-version="true"></script>
+    <script src="~/js/handle-icon-eye.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,47 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model IdentityServer4.Quickstart.Model.VerificationLoginInputModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewBag.Title = Localizer["PAGE.VERIFICATION.TITLE"];
+    ViewBag.SubTitle = Localizer["PAGE.VERIFICATION.SUB_TITLE"];
+    var recaptchaKey = @Configuration.GetSection("ApplicationKeys")["reCaptchaV2:SiteKey"];
+}
+<div class="access-denied unform">
+    <div class="header-form">
+        <span class="sub-title unmargin-top">@ViewBag.SubTitle</span>
+    </div>
+    <form id='mainForm' class="page-login" asp-route="Verification">
+        @if (!string.IsNullOrEmpty(recaptchaKey))
+            {
+                <div id='recaptcha' class="g-recaptcha" data-sitekey="@recaptchaKey" data-callback="onSubmit"
+                    data-expired-callback="expiredCallback" data-size="invisible">
+                </div>
+            }
+        <input type="hidden" name="Username" value="@Model.Username" />
+        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+        @* <input type="hidden" name="ResendTokenUrl" value="@Model.ResendTokenUrl" /> *@
+        @* <input id="resend-token-link" type="hidden" value="@Model.ResendTokenUrl"> *@
+        <div class="error-message-block">
+            <div asp-validation-summary="ModelOnly" class="error-message"></div>
+        </div>
+        <div class="col-12">
+            <div class="form-group first-child">
+                <label for="verification_code"
+                       class="form-label">@Localizer["PAGE.VERIFICATION.FIELD.VERFICATION_CODE"]</label>
+                <input type="text" class="form-control token-input required" id="verification_code"
+                       placeholder='@Localizer["PAGE.VERIFICATION.FIELD.VERFICATION_CODE"]' asp-for="Token">
+                <span asp-validation-for="Token" class="val-error-message"></span>
+            </div>
+        </div>
+        <div class="col-12 text-center btn-bar footer-verify">
+            <input type="submit" value='@Localizer["BUTTON.SUBMIT"]' class="btn btn-primary text-uppercase acceptBtn" />
+        </div>
+    </form>
+</div>
+
+@section scripts
+    {
+    <script src="~/js/page.verification.js" asp-append-version="true"></script>
+}

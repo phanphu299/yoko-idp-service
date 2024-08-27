@@ -1,0 +1,17 @@
+namespace IdpServer.Application.Constant
+{
+    public class MessageConstants
+    {
+        public const string ENTITY_NOT_FOUND = "ERROR.ENTITY.NOT_FOUND";
+        public const string ACCOUNT_LOCKED = "ERROR.ACCOUNT.LOCKED";
+        public const string COMMON_ERROR_SYSTEM_NOT_SUPPORTED = "ERROR.SYSTEM.NOT_SUPPORTED";
+        public const string COMMON_ERROR_AUTHENTICATION = "ERROR.AUTHENTICATION.FAILED";
+        public const string OPERATION_INVALID = "ERROR.OPERATION.INVALID";
+        public const string PASSWORD_POLICY_HISTORY_FAILED = "ERROR.VALIDATION.PASSWORD_HISTORY_FAILED";
+        public const string PASSWORD_POLICY_COMPLEXITY_NOT_MATCH = "ERROR.VALIDATION.PASSWORD_COMPLEXITY_NOT_MATCH";
+        public const string PASSWORD_POLICY_LENGTH_NOT_MATCH = "ERROR.VALIDATION.PASSWORD_LENGTH_NOT_MATCH";
+        public const string PASSWORD_POLICY_PASS_MATCH_NAME = "ERROR.VALIDATION.PASSWORD_MATCH_NAME";
+        public const string ERROR_VALIDATION_WRONG_CURRENT_PASSWORD = "ERROR.VALIDATION.WRONG_CURRENT_PASSWORD";
+        public const string SUCCESS = "SUCCESS";
+    }
+}

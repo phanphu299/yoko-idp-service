@@ -1,0 +1,47 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model IdentityServer4.Quickstart.Model.SelectTenantInputModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = Localizer["PAGE.SELECT_TENANT.TITLE"];
+    ViewBag.SubTitle = Localizer["PAGE.SELECT_TENANT.SUB_TITLE"];
+    var recaptchaKey = @Configuration.GetSection("ApplicationKeys")["reCaptchaV2:SiteKey"];
+}
+<div class="access-denied unform">
+    <div class="header-form">
+        <span class="sub-title unmargin-top">@ViewBag.SubTitle</span>
+    </div>
+    <form id='selectTenantForm' class="page-login row g-0" asp-route="SetPassword">
+        @if (!string.IsNullOrEmpty(recaptchaKey))
+            {
+                <div id='recaptcha' class="g-recaptcha" data-sitekey="@recaptchaKey" data-callback="onSubmit"
+                    data-expired-callback="expiredCallback" data-size="invisible">
+                </div>
+            }
+        <input type="hidden" name="Username" value="@Model.Username" />
+        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+        <div class="error-message-block">
+            <div asp-validation-summary="ModelOnly" class="error-message"></div>
+        </div>
+        <div class="col-12">
+            <div class="form-group first-child">
+                <label for="user_tenant" class="form-label form-label-tenant required">@Localizer["PAGE.SELECT_TENANT.FIELD.TENANT"]</label>
+                <select id="user_tenant"
+                        asp-for="SelectedTenant"
+                        asp-items="Model.Tenants"
+                        class="select-tenant"
+                        data-placeholder='@Localizer["PAGE.SELECT_TENANT.FIELD.TENANT.PLACEHOLDER"]'></select>
+                <span asp-validation-for="SelectedTenant" class="val-error-message"></span>
+            </div>
+        </div>
+
+        <div class="col-12 text-center btn-bar footer-verify">
+            <input type="submit" class="btn btn-primary text-uppercase" value='@Localizer["BUTTON.SUBMIT"]' />
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/js/page.select.tenant.js" asp-append-version="true"></script>
+}

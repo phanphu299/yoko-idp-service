@@ -1,0 +1,43 @@
+@model IdentityServer4.Quickstart.Model.LoggedOutViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    // set this so the layout rendering sees an anonymous user
+    ViewData["signed-out"] = true;
+
+    var redirectUrl = Model.PostLogoutRedirectUri;
+    var hereText = @Localizer["PAGE.COMMON.TEXT.HERE"];
+}
+<div class="header-form">
+    <div class="tenant">
+        <span class="tenant-name">
+            @{
+                var message = Localizer.GetString("PAGE.LOGOUT.CLICK_TO_REDIRECT", "<a class='PostLogoutRedirectUri' href="
+                + @redirectUrl + ">" + @hereText.Value + "</a>", @Model.ClientName);
+            }
+            @if (Model.PostLogoutRedirectUri != null)
+            {
+                <span>
+                    @Html.Raw(message)
+                </span>
+            }
+            @if (Model.SignOutIframeUrl != null)
+            {
+                <iframe width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>
+            }
+        </span>
+    </div>
+</div>
+<div class="page-login row">
+    <div asp-validation-summary="ModelOnly" class="error-message"></div>
+    <div class="col-12"></div>
+</div>
+
+@section scripts
+{
+    @if (Model.AutomaticRedirectAfterSignOut)
+    {
+        <script src="~/js/signout-redirect.js"></script>
+    }
+}

@@ -1,0 +1,1 @@
+create nonclustered index IDX_user_subscriptions_upn_tenantId_subscriptionId on user_subscriptions(upn, tenant_id, subscription_id);

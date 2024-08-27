@@ -1,0 +1,43 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model IdentityServer4.Quickstart.Model.ErrorViewModel
+
+@{
+    ViewBag.Title = Model.ErrorTitle;
+    ViewBag.SubTitle = Model.ErrorMessage;
+}
+<div class="access-denied unform">
+    <div class="header-form">
+        <div class="tenant title-form-error">
+            <span class="tenant-name">@Localizer["PAGE.VERIFICATION.FIELD.ENCOUNTERED_ERROR"]</span>
+        </div>
+        <span class="error-title">Unauthorized_client</span>
+    </div>
+    <form id="mainForm" class="page-login" asp-route="Error">
+        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+        <div asp-validation-summary="ModelOnly" class="error-message"></div>
+        <div class="col-12">
+            <div class="form-floating">
+                @if (Model.AutoRedirectTime > 0)
+                {
+                    <span class="center-text">
+                        <span>@Localizer["PAGE.VERIFICATION.FIELD.REDIREC"]</span>
+                        <span id="countdown">@Model.AutoRedirectTime</span>(s).
+                    </span>
+                }
+            </div>
+        </div>
+
+        <div class="col-12 text-center btn-bar footer-verify">
+            <button type="submit" name="button" id="btn-ok" class="btn btn-primary text-uppercase acceptBtn">@Localizer["BUTTON.OK"]</button>
+        </div>
+    </form>
+</div>
+
+@section scripts
+    {
+    @if (Model.AutoRedirectTime > 0)
+    {
+        <script src="~/js/auto-redirect.js"></script>
+    }
+}

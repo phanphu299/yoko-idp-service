@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "719024017197",
+    "project_id": "yokogawa-dev",
+    "storage_bucket": "yokogawa-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719024017197:android:e4ffbe0503ff91b7948da4",
+        "android_client_info": {
+          "package_name": "com.yokogawa.alarm.management"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5-8I-MbadFNQfACKYxc8RwxW9uU-un5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

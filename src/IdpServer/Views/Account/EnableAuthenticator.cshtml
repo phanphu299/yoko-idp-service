@@ -1,0 +1,76 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model IdentityServer4.Quickstart.Model.EnableAuthenticatorModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewBag.Title = Localizer["PAGE.VERIFICATION.AUTHENTICATOR_TITLE"];
+    ViewBag.SubTitle = Localizer["PAGE.VERIFICATION.AUTHENTICATOR_SUB_TITLE"];
+    var recaptchaKey = @Configuration.GetSection("ApplicationKeys")["reCaptchaV2:SiteKey"];
+}
+<div class="access-denied-login">
+    <div class="header-form">
+        <span class="sub-title unmargin-top">@ViewBag.SubTitle</span>
+    </div>
+    <div class="mfa-content">
+        <p>@Localizer["PAGE.VERIFICATION.FIELD.AUTHENTICATOR_APP_STEPS"]</p>
+        <ol class="list">
+            <li>
+                <p>
+                    @Localizer["PAGE.VERIFICATION.FIELD.AUTHENTICATOR_APP_DOWNLOAD_TEXT"]
+                    <a href="https://go.microsoft.com/fwlink/?Linkid=825071" target="_blank">Windows Phone</a>,
+                    <a href="https://go.microsoft.com/fwlink/?Linkid=825072" target="_blank">Android</a>
+                    @Localizer["PAGE.VERIFICATION.FIELD.AND"]
+                    <a href="https://go.microsoft.com/fwlink/?Linkid=825073" target="_blank">iOS</a>
+                    @Localizer["PAGE.VERIFICATION.FIELD.OR"]
+                    @Localizer["PAGE.VERIFICATION.FIELD.AUTHENTICATOR_APP_GOOGLE_TEXT"]
+                    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en" target="_blank">Android</a>
+                    @Localizer["PAGE.VERIFICATION.FIELD.AND"]
+                    <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8" target="_blank">iOS</a>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    @Localizer["PAGE.VERIFICATION.FIELD.AUTHENTICATOR_APP_SCAN_ALERT"]<a href="https://docs.ahi.apps.yokogawa.com/articles/asset-identity/intro.html" target="_blank">@Localizer["PAGE.VERIFICATION.FIELD.AUTHENTICATOR_APP_SCAN_ALERT_LINK"]</a>.
+                </p>
+                <div id="qrCode"></div>
+                <div id="qrCodeData" data-url="@Html.Raw(Model.AuthenticatorUri)"></div>
+            </li>
+            <li>
+                <p class="unmargin-bottom">
+                    @Localizer["PAGE.VERIFICATION.FIELD.AUTHENTICATOR_APP_SCAN_ALERT_DETAILS"]
+                </p>
+            </li>
+        </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <form id='mainForm' class="page-login row g-0" asp-route="Verification">
+                    @if (!string.IsNullOrEmpty(recaptchaKey))
+                    {
+                        <div id='recaptcha' class="g-recaptcha" data-sitekey="@recaptchaKey" data-callback="onSubmit"
+                            data-expired-callback="expiredCallback" data-size="invisible">
+                        </div>
+                    }
+                    <input type="hidden" name="Username" value="@Model.Username" />
+                    <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+                    <div class="form-group">
+                        <label asp-for="Token"
+                               class="control-label">@Localizer["PAGE.VERIFICATION.FIELD.VERFICATION_CODE"]</label>
+                        <input asp-for="Token" class="form-control required" autocomplete="off" />
+                        <span asp-validation-for="Token" class="val-error-message"></span>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="val-error-message"></div>
+                    <div class="col-12 text-center btn-bar padding-form">
+                        <button type="submit" class="btn btn-primary text-uppercase" disabled>@Localizer["BUTTON.SUBMIT"]</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+    {
+    <script src="~/js/qrcode.min.js"></script>
+    <script type="text/javascript" src="~/js/qr.js"></script>
+    <script type="text/javascript" src="~/js/page.enable-authenticator.js"></script>
+}

@@ -1,0 +1,1 @@
+UPDATE users SET display_date_time_format = REPLACE(display_date_time_format COLLATE SQL_Latin1_General_CP1_CS_AS, 'yyyy', 'YYYY');

@@ -1,0 +1,15 @@
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/bin/Debug/netstandard2.1/IdpServer.Persistence.deps.json
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/bin/Debug/netstandard2.1/IdpServer.Persistence.dll
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/bin/Debug/netstandard2.1/IdpServer.Persistence.pdb
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/bin/Debug/netstandard2.1/IdpServer.Application.dll
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/bin/Debug/netstandard2.1/IdpServer.Domain.dll
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/bin/Debug/netstandard2.1/IdpServer.Domain.pdb
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/bin/Debug/netstandard2.1/IdpServer.Application.pdb
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/obj/Debug/netstandard2.1/IdpServer.Persistence.csproj.AssemblyReference.cache
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/obj/Debug/netstandard2.1/IdpServer.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/obj/Debug/netstandard2.1/IdpServer.Persistence.AssemblyInfoInputs.cache
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/obj/Debug/netstandard2.1/IdpServer.Persistence.AssemblyInfo.cs
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/obj/Debug/netstandard2.1/IdpServer.Persistence.csproj.CoreCompileInputs.cache
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/obj/Debug/netstandard2.1/IdpServer.Persistence.csproj.CopyComplete
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/obj/Debug/netstandard2.1/IdpServer.Persistence.dll
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Persistence/obj/Debug/netstandard2.1/IdpServer.Persistence.pdb

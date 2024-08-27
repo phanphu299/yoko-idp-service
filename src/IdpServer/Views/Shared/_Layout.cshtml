@@ -1,0 +1,92 @@
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@using IdentityServer4.Extensions
+@{
+    string name = null;
+    if (!true.Equals(ViewData["signed-out"]))
+    {
+        name = Context.User?.GetDisplayName();
+    }
+
+    var recaptchaKey = @Configuration.GetSection("ApplicationKeys")["reCaptchaV2:SiteKey"];
+    var displayICP = @Configuration.GetSection("Default")["DisplayICP"] ?? "false";
+    var emailRegex = @Configuration["EmailRegex"];
+    var cdn = @Configuration["Endpoint:CDN"];
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="@cdn/assets/libs/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="@cdn/assets/libs/bootstrap/css/bootstrap-icons.css" />
+    <link rel="stylesheet" href="@cdn/assets/libs/select2/select2.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @RenderSection("css", required: false)
+</head>
+
+<body>
+    <video playsinline autoplay muted loop id="video-background">
+        <source id="source-video-background" type="video/mp4">
+    </video>
+    <div class="container">
+        @* @await Html.PartialAsync("_SelectLanguage") *@
+        <main role="main" class="main">
+            <div class="left-content">
+                <div class="header-container">
+                    <div class="header-logo"></div>
+                </div>
+                <div class="slogan-side">
+                    <div class="slogan-image"></div>
+                </div>
+            </div>
+            <div class="main-2">
+                @RenderBody()
+                <input type='hidden' id='emailRegex' value='@emailRegex' />
+
+                @* @if (!string.IsNullOrEmpty(recaptchaKey))
+                {
+                    <div id='recaptcha' class="g-recaptcha" data-sitekey="@recaptchaKey" data-callback="onSubmit"
+                         data-expired-callback="expiredCallback" data-size="invisible">
+                    </div>
+                } *@
+            </div>
+            @if (displayICP.ToLower() == "true")
+            {
+                <div class="icp-footer">
+                    <a href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%5b19010412-3%5d' target='_blank'>
+                        沪ICP备19010412号-3
+                    </a>
+                    <span>
+                        <img src='../img/Logo-des-PSBs.png' class='icp-logo' alt='' />
+                        沪公网安备 号
+                    </span>
+                </div>
+            }
+        </main>
+    </div>
+
+
+    <script src="@cdn/assets/libs/jquery/jquery.min.js"></script>
+    <script src="@cdn/assets/libs/jquery-validate/jquery.validate.min.js"></script>
+    <script src="@cdn/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="@cdn/assets/libs/select2/select2.min.js"></script>
+    <script src="~/js/jquery.validate.ext.js" asp-append-version="true"></script>
+    <script src="~/js/select-language.js" asp-append-version="true"></script>
+    <script src="/js/handleVideoBackground.js" asp-append-version="true" defer></script>
+    @RenderSection("scripts", required: false)
+    @if (!string.IsNullOrEmpty(recaptchaKey))
+    {
+        <script src="~/js/recaptcha-handler.js" asp-append-version="true" async defer></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    }
+</body>
+
+</html>

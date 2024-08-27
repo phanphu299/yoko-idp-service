@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = IdpServer.Application
+build_property.ProjectDir = /Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

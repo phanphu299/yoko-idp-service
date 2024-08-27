@@ -1,0 +1,13 @@
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/bin/Debug/netstandard2.1/IdpServer.Application.deps.json
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/bin/Debug/netstandard2.1/IdpServer.Application.dll
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/bin/Debug/netstandard2.1/IdpServer.Application.pdb
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/bin/Debug/netstandard2.1/IdpServer.Domain.dll
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/bin/Debug/netstandard2.1/IdpServer.Domain.pdb
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/obj/Debug/netstandard2.1/IdpServer.Application.csproj.AssemblyReference.cache
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/obj/Debug/netstandard2.1/IdpServer.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/obj/Debug/netstandard2.1/IdpServer.Application.AssemblyInfoInputs.cache
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/obj/Debug/netstandard2.1/IdpServer.Application.AssemblyInfo.cs
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/obj/Debug/netstandard2.1/IdpServer.Application.csproj.CoreCompileInputs.cache
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/obj/Debug/netstandard2.1/IdpServer.Application.csproj.CopyComplete
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/obj/Debug/netstandard2.1/IdpServer.Application.dll
+/Users/phuphan/Yokogawa/Asset Identity/identity-service/src/IdpServer.Application/obj/Debug/netstandard2.1/IdpServer.Application.pdb

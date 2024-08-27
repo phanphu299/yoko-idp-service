@@ -1,0 +1,22 @@
+@model IdentityServer4.Quickstart.Model.RedirectViewModel
+
+<meta http-equiv="refresh" content="0;url=@Model.RedirectUrl" data-url="@Model.RedirectUrl">
+
+@{
+    ViewBag.Title = "Redirecting...";
+    ViewBag.SubTitle = "You are now being returned to the application.";
+}
+<div class="header-form">
+    <div class="tenant">
+        <span class="tenant-name">@ViewBag.SubTitle</span>
+    </div>
+</div>
+<div class="page-login row">
+    <div asp-validation-summary="ModelOnly" class="error-message"></div>
+    <div class="col-12"></div>
+</div>
+
+@section scripts
+{
+<script src="~/js/signin-redirect.js"></script>
+}

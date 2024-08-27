@@ -1,0 +1,25 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "ASPNETCORE_ENVIRONMENT": "Development",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;",
+    "Authentication__Authority": "http://127.0.0.1:8081",
+    "Authentication__ClientId": "postman-sa",
+    "Authentication__ClientSecret": "CU8cEU3yJ4hCEd6QAB",
+    "KEY_VAULT_NAME": "",
+    "ConnectionStrings__Default": "Server=127.0.0.1;Database=Identity;User=sa;Password=Pass1234!;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;",
+    "ConnectionStrings__User": "Server=127.0.0.1;Database=user_{{domain}};User=sa;Password=Pass1234!;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;",
+    "LoginWebHost": "https://ydx-dev01-idp-sea-wa.azurewebsites.net",
+    "DefaultRedirectUrl": "https://ydx-dev01-asset-health-fe-sea-wa.azurewebsites.net/home",
+    "RabbitMQ": "amqp://rabbitmq:Pass1234!@127.0.0.1:5672",
+    "Function__Master": "http://127.0.0.1:7073",
+    "Api__Notification": "http://localhost:20000",
+    "Api__Configuration": "http://127.0.0.1:13000",
+    "Redis__Host": "127.0.0.1",
+    "Redis__Password": "Pass1234!",
+    "Redis__Database": "1",
+    "Redis__Ssl": "false",
+    "PasswordExpireIn": "14"
+  }
+}

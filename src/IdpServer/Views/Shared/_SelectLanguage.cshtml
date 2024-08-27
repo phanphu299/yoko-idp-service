@@ -1,0 +1,27 @@
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using IdpServer.Application.Service.Abstraction
+@inject IViewLocalizer Localizer
+@inject ILocalizationService localizationService
+@{
+    var languages = await localizationService.GetLanguagesAsync();
+    var languageItems = languages.Select(c => new SelectListItem
+    {
+        Value = c.Code,
+        Text = Localizer[$"COMMON.LANGUAGE.{c.Code.ToUpper()}"].Value,
+        Selected = c.Code == CultureInfo.CurrentCulture.Name
+    })
+    .ToList();
+
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" :
+    $"~{Context.Request.Path.Value}{Context.Request.QueryString}";
+}
+
+<div class="language-form-wapper">
+    <form id="languageForm" method="post" asp-controller="Account" asp-action="ChangeLanguage" asp-route-returnUrl="@returnUrl">
+        <div class="select-language">
+            <select id="language" name="language" asp-items="languageItems">
+            </select>
+        </div>
+    </form>
+</div>

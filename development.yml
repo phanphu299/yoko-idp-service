@@ -1,0 +1,17 @@
+version: "3"
+services:
+  idp:
+    # replace username/repo:tag with your name and image details
+    build: 
+      context: .
+      dockerfile: Dockerfile
+  idp-migration:
+    # replace username/repo:tag with your name and image details
+    build: 
+      context: .
+      dockerfile: Dockerfile-migration
+  idp-function:
+    # replace username/repo:tag with your name and image details
+    build: 
+      context: .
+      dockerfile: Dockerfile-function

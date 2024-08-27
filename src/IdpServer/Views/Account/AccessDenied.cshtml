@@ -1,0 +1,28 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model IdentityServer4.Quickstart.Model.AccessDeniedViewModel
+
+@{
+    ViewBag.Title = Localizer["PAGE.ACCESS_DENIED.TITLE"];
+    ViewBag.SubTitle = Localizer["ERROR.ACCOUNT_NOT_SUPPORTED"];
+}
+<div class="access-denied unform">
+    <div class="header-form">
+        <div class="tenant">
+            <span class="tenant-name">@ViewBag.Title</span>
+        </div>
+    </div>
+    <form class="page-login row g-0" asp-route="AccessDenied">
+        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+        <div class="error-message-block">
+            <div class="form-error-floating center-text">
+                <span class="error-message">
+                    @Model.Message
+                </span>
+            </div>
+        </div>
+        <div class="col-12 text-center btn-bar">
+            <button type="submit" name="button" id="btn-ok" class="btn btn-primary text-uppercase acceptBtn">@Localizer["BUTTON.OK"]</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,72 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model IdentityServer4.Quickstart.Model.LinkExpiredInputModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewBag.Title = Localizer["PAGE.LINK_EXPIRED.TITLE"];
+    ViewBag.SubTitle = Localizer["MESSAGE.TOKEN_EXPIRED"];
+    if (Model.Result)
+    {
+        ViewBag.SubTitle = Localizer["MESSAGE.RESET_PASSWORD_EMAIL_SENT_LINK_EXPIRED"];
+    }
+    var recaptchaKey = @Configuration.GetSection("ApplicationKeys")["reCaptchaV2:SiteKey"];
+}
+@if (Model.Result == false)
+{
+    <div class="access-denied unform">
+        <div class="header-form">
+            <div class="tenant">
+                <span class="tenant-name">@ViewBag.SubTitle</span>
+            </div>
+        </div>
+        <form class="page-login row g-0" asp-route="LinkExpired">
+            @if (!string.IsNullOrEmpty(recaptchaKey))
+            {
+                <div id='recaptcha' class="g-recaptcha" data-sitekey="@recaptchaKey" data-callback="onSubmit"
+                    data-expired-callback="expiredCallback" data-size="invisible">
+                </div>
+            }
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+            <input type="hidden" name="TokenType" value="@Model.TokenType" />
+            <input type="hidden" name="Username" value="@Model.Username" />
+            <div asp-validation-summary="ModelOnly" class="error-message"></div>
+            <div class="col-12">
+                <div class="form-group center-text">
+                    <span class="sub-title">
+                        @Localizer["PAGE.LINK_EXPIRED.SUB_TITLE"]
+                    </span>
+                </div>
+
+                <div class="col-12 text-center btn-bar footer-verify">
+                    <button type="submit" class="btn btn-primary text-uppercase" disabled="@(Model.Result)">
+                        @Localizer["BUTTON.RESEND"]
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="access-denied unform">
+        <div class="header-form">
+            <div class="tenant">
+                <span class="tenant-name">@ViewBag.SubTitle</span>
+            </div>
+        </div>
+        <form class="page-login row g-0" asp-route="LinkExpired">
+            <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+            <input type="hidden" name="TokenType" value="@Model.TokenType" />
+            <input type="hidden" name="Username" value="@Model.Username" />
+            <div asp-validation-summary="ModelOnly" class="error-message"></div>
+            <div class="col-12">
+                <div class="center-text padding-title">
+                    <span class="sub-title">
+                        @Localizer["PAGE.LINK_EXPIRED.NEW_SUB_TITLE"]
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+}
